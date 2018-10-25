@@ -1,17 +1,13 @@
 import * as React from "react";
 import { Fragment } from "react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ThemeProvider } from "emotion-theming";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;
+import "./globalStyles";
 
 const theme = {
-  primaryColor: "#39465D",
-  secondaryColor: "#0066cc",
+  primary: "#39465D",
+  reversedPrimary: "#fff",
+  secondary: "#0066cc",
   bgColor: "#5DAAED",
   tags: {
     yellow: "#f9dc1b",
@@ -27,10 +23,7 @@ interface Props {
 
 const MainTemplate: React.SFC<Props> = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <Fragment>
-      <GlobalStyle />
-      {children}
-    </Fragment>
+    <Fragment>{children}</Fragment>
   </ThemeProvider>
 );
 

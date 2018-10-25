@@ -1,6 +1,7 @@
 export default interface ThemeInterface {
-  primaryColor: string;
-  secondaryColor: string;
+  primary: string;
+  reversedPrimary: string;
+  secondary: string;
   bgColor: string;
   tags: {
     yellow: string;

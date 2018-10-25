@@ -1,21 +1,24 @@
 import * as React from "react";
-import styled from "../templates/styled-components";
+import MagnifyIcon from "@material-ui/icons/Search";
+
+import styled from "../templates/styled";
 
 interface SearchIconProps {
-  color?: string;
+  color?: any;
   background?: string;
 }
 
-const MagnifierIcon = styled<SearchIconProps, "div">("div")`
-  display: inline-block;
-  color: ${props => (props.color ? props.color : "#fff")};
-  background: ${props => (props.background ? props.background : "transparent")};
+const MagnifierIcon = styled(MagnifyIcon)`
+  grid-column: 11 / -1;
+  color: ${(props: SearchIconProps) => (props.color ? props.color : "#fff")};
+  background: ${(props: SearchIconProps) => (props.background ? props.background : "transparent")};
+  padding: 10px;
+  font-size: 28px;
+  border-radius: 50%;
 `;
 
 const SearchMagnifierIcon: React.SFC<SearchIconProps> = ({ color, background }) => (
-  <div>
-    <MagnifierIcon color={color} background={background} />
-  </div>
+  <MagnifierIcon color={color} background={background} />
 );
 
 export default SearchMagnifierIcon;

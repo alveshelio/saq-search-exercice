@@ -8,7 +8,7 @@
     "member-access": false,
     "jsx-curly-spacing": "always",
     "jsx-equals-spacing": "always",
-    "jsx-boolean-value": "never",
+    "jsx-boolean-value": false,
     "jsx-no-bind": true,
     "no-submodule-imports": false,
     "no-duplicate-imports": false,
