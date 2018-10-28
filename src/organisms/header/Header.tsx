@@ -1,8 +1,12 @@
-import * as React from "react";
-import { AppBar, Typography } from "@material-ui/core";
+import * as React from "react"
+import { AppBar, Typography } from "@material-ui/core"
 
-import styled from "../../templates/styled";
-import SearchBar from "../../molecules/search/SearchBar";
+import styled from "../../templates/styled"
+import SearchBar from "../../molecules/search/SearchBar"
+
+const StyledAppBar = styled(AppBar)`
+  grid-area: header;
+`
 
 const StyledHeader = styled.div`
   display: grid;
@@ -10,17 +14,17 @@ const StyledHeader = styled.div`
   grid-template-rows: 70px;
   align-items: center;
   margin: 0 20px;
-`;
+`
 
 const Header = () => (
-  <AppBar position="static">
+  <StyledAppBar position="static">
     <StyledHeader>
       <Typography variant="h6" color="inherit" noWrap={true}>
         SAQ Search
       </Typography>
       <SearchBar />
     </StyledHeader>
-  </AppBar>
-);
+  </StyledAppBar>
+)
 
-export default Header;
+export default Header

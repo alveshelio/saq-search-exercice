@@ -1,5 +1,15 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import Routes from "./routes/Routes";
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+import Routes from "./routes/Routes"
+import { Provider } from "react-redux"
 
-ReactDOM.render(<Routes />, document.getElementById("app"));
+import createStore from "./store/createStore"
+
+const store = createStore()
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
+  document.getElementById("app")
+)

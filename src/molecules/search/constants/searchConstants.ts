@@ -1,0 +1,1 @@
+export const SEARCH_BEVERAGE = "SEARCH_BEVERAGE"
