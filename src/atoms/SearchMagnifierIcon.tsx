@@ -1,18 +1,24 @@
 import * as React from "react"
+import { connect } from "react-redux"
 import MagnifyIcon from "@material-ui/icons/Search"
 import { lighten } from "polished"
 
 import styled from "../templates/styled"
+import { fetchBeverages } from "../organisms/search-results/actions/searchResultsActions"
+import ThemeInterface from "../templates/theme"
 
-interface SearchIconProps {
+interface OwnProps {
+  searchTerm?: string
+  fetchBeverages?: (term: string) => void
   color?: any
   background?: string
+  theme?: ThemeInterface
 }
 
 const MagnifierIconWrapper = styled.div`
   grid-column: 11 / -1;
-  color: ${(props: SearchIconProps) => (props.color ? props.color : "#fff")};
-  background: ${(props: SearchIconProps) => (props.background ? props.background : "transparent")};
+  color: ${(props: OwnProps) => (props.color ? props.color : props.theme.primary)};
+  background: ${(props: OwnProps) => (props.background ? props.background : "transparent")};
   padding: 10px;
   font-size: 24px;
   border-radius: 10px;
@@ -27,10 +33,23 @@ const MagnifierIconWrapper = styled.div`
   }
 `
 
-const SearchMagnifierIcon: React.SFC<SearchIconProps> = ({ color, background }) => (
-  <MagnifierIconWrapper color={color} background={background}>
-    <MagnifyIcon />
-  </MagnifierIconWrapper>
-)
+class SearchMagnifierIcon extends React.Component<OwnProps> {
+  public searchBeverages = () => {
+    console.warn("this.props.fetchBeverages(this.props.searchTerm)", this.props.searchTerm)
+    this.props.fetchBeverages(this.props.searchTerm)
+  }
 
-export default SearchMagnifierIcon
+  render() {
+    const { background } = this.props
+    return (
+      <MagnifierIconWrapper background={background} onClick={this.searchBeverages}>
+        <MagnifyIcon />
+      </MagnifierIconWrapper>
+    )
+  }
+}
+
+export default connect(
+  null,
+  { fetchBeverages }
+)(SearchMagnifierIcon)

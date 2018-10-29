@@ -1,6 +1,5 @@
 import * as React from "react"
 import { TextField } from "@material-ui/core"
-import { css } from "emotion"
 
 import styled from "../../templates/styled"
 import SearchMagnifierIcon from "../../atoms/SearchMagnifierIcon"
@@ -26,7 +25,7 @@ const Input = styled(TextField)`
   }
 `
 
-class SearchBar extends React.Component {
+class SearchBar extends React.Component<any> {
   state = {
     searchValue: "",
   }
@@ -38,6 +37,7 @@ class SearchBar extends React.Component {
 
   render() {
     const { searchValue } = this.state
+    console.warn("this.props", this.props)
     return (
       <StyledSearchBar>
         <FormGroup>
@@ -51,7 +51,7 @@ class SearchBar extends React.Component {
             onChange={this.onChangeHandler}
           />
         </FormGroup>
-        <SearchMagnifierIcon color="blue" background="#fff" />
+        <SearchMagnifierIcon color="blue" background="#fff" searchTerm={searchValue} />
       </StyledSearchBar>
     )
   }

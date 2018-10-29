@@ -12,6 +12,11 @@ import {
 import styled from "../../templates/styled"
 interface BeverageCardProps {
   title: string
+  thumbnail: string
+  country: string
+  price: string
+  classification: string
+  availability: string
 }
 
 const BeverageCardContainer = styled(Card)`
@@ -28,21 +33,26 @@ const Picture = styled(CardMedia)`
   margin: 10px auto;
 `
 
-const BeverageCard: React.SFC<BeverageCardProps> = ({ title }) => (
+const BeverageCard: React.SFC<BeverageCardProps> = ({
+  title,
+  thumbnail,
+  country,
+  price,
+  classification,
+  availability,
+}) => (
   <BeverageCardContainer>
-    <Picture image="http://lorempixel.com/150/200/sports/" title="Contemplative Reptile" />
+    <Picture image={thumbnail} />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="h2">
+      <Typography gutterBottom variant="h5" component="h5">
         {title}
       </Typography>
-      <Typography component="p">
-        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across
-      </Typography>
+      <Typography component="p">Price: {price}</Typography>
+      <Typography component="p">Country: {country}</Typography>
+      {classification && <Typography component="p">Classification: {classification}</Typography>}
+      <Typography component="p">Availability: {availability}</Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" color="primary">
-        Share
-      </Button>
       <Button size="small" color="primary">
         Learn More
       </Button>

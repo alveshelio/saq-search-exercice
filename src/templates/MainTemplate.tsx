@@ -4,7 +4,7 @@ import { ThemeProvider } from "emotion-theming"
 
 import "./globalStyles"
 
-const theme = {
+export const theme = {
   primary: "#39465D",
   reversedPrimary: "#fff",
   secondary: "#0066cc",

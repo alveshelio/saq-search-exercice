@@ -1,9 +1,8 @@
 import * as React from "react"
+import { connect } from "react-redux"
 
 import styled from "../../templates/styled"
 import BeverageCard from "../../molecules/beverage/BeverageCard"
-
-// interface SearchResultsProps {}
 
 const SearchResultsContainer = styled.div`
   display: grid;
@@ -16,12 +15,29 @@ const SearchResultsContainer = styled.div`
   padding: ${props => props.theme.gap};
 `
 
-const SearchResults: React.SFC<any> = () => (
+const mapStateToProps = (state: SearchState) => ({
+  beverages: state.search.searchResults.results,
+  requestDuration: state.search.searchResults.requestDuration,
+  totalCount: state.search.searchResults.totalCount,
+})
+
+const SearchResults: React.SFC<any> = ({ beverages, requestDuration, totalCount }) => (
   <SearchResultsContainer>
-    {["one", "two", "three", "four", "five", "six", "seven", "height"].map(item => {
-      return <BeverageCard key={item} title={item} />
-    })}
+    {beverages &&
+      beverages.map((beverage: Beverage) => {
+        return (
+          <BeverageCard
+            key={beverage.UniqueId}
+            title={beverage.Title}
+            thumbnail={beverage.thumbnail}
+            country={beverage.country}
+            price={beverage.price}
+            classification={beverage.classification}
+            availability={beverage.availability}
+          />
+        )
+      })}
   </SearchResultsContainer>
 )
 
-export default SearchResults
+export default connect(mapStateToProps)(SearchResults)
